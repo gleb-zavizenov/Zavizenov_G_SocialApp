@@ -1,0 +1,15 @@
+{
+  "name": "zavienov_g_chatapp",
+  "version": "1.0.0",
+  "description": "social media app ",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "GZ",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
+}
