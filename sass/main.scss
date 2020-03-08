@@ -5,63 +5,88 @@
 
 html, body { height: 100%; }
 
-body { font: 16px Helvetica, Arial; }
+body { 
+	font: 16px Helvetica, Arial; 
+}
 
 main { 
 	display: flex;
 	height: 100%;
-	flex-direction: row;
+	flex-direction: column-reverse;
 }
-.form-container, .messages { padding: 20px; }
+.form-container, .messages { margin-top: 20px; }
 .form-container { 
 	flex: 1; 
-	border: 6px solid #bfcfd6;
-	background-color: #e3edf1;
+	height:45%;
+	width:100%;
+	background-color: #573280;
+	border-radius: 40px 40px 0 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 
-	label { display: block; margin-bottom: 0.5rem; }
+	label { 
+		display: block; 
+		margin-bottom: 0.5rem; 
+		color: white; 
+	}
+}
+
+.form-container-inside{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width:320px;
 }
 
 .messages { 
 	flex: 2;
-	background-color: #eee;
-	border: 6px solid #e2e0e0; 
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height:50%;
 }
 
 input, textarea { 
-	display: block; 
 	width: 100%;
-	border: 2px solid #bfcfd6;
-	//border-color: #bfcfd6; 
+	border:none;
 	border-radius: 4px; 
 	font-size: 0.8rem; 
 	padding: 0.4rem; 
-	border-style: solid;
 }
 
-textarea { height: 135px; }
-
-
+textarea { 
+	height: 100px;
+	resize: none; 
+	margin-top:7px;
+}
 
 form {
-	//background: #000;
-	padding: 3px;
-	margin: 12px auto;
-
-	input[type=submit] { 
-		width: auto; 
-		padding: 10px; 
-		background-color: rgb(75, 200, 17);
-		margin-top: 1rem; 
-		border-radius: 8px;
-		color: white;
-		cursor: pointer;
-		text-transform: uppercase;
-		font-weight: bold;
-	}
+	width:100%;
 }
 
+.submit-btn{
+	width:100%;
+	height:35px;
+	background-color: rgb(75, 200, 17);
+	color: white;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-top:10px;
+	border-radius: 30px;
+}
+
+
 #messages {
-	list-style-type: none; margin: 0; padding: 0;
+	list-style-type: none; 
+	margin: 0; 
+	padding: 0;
+	width:320px;
 
 	li { padding: 5px 10px;	}
 	li:nth-child(odd) { background: #eee; }
@@ -70,3 +95,68 @@ form {
 // imports
 
 @import 'modules/_message';
+
+
+//
+// Styles for tablet version
+// 
+@media screen and (min-width:720px){
+	.form-container-inside{
+		width:720px;
+	}
+
+	#messages{
+		width:720px;
+	}
+
+	input,textarea{
+		font-size:20px;
+	}
+
+	textarea{
+		margin-top:20px;
+		height:130px;
+	}
+
+	.submit-btn{
+		height:50px;
+		margin-top:35px;
+	}
+} 
+
+// 
+// Styles for desktop version
+//
+@media screen and (min-width:1200px){
+	#messages{
+		width:1200px;
+	}
+
+	input,textarea{
+		font-size:16px;
+	}
+
+	.form-container-inside{
+		width: 1200px;
+
+		form{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			margin-top:15px;
+
+			textarea{
+				width:950px;
+				height:100px;
+				margin:0;
+			}
+		}
+
+		.submit-btn{
+			margin:0;
+			width:200px;
+			height:100px;
+		}
+	}
+}

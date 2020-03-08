@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Socket IO Chat with Node!</title>
 	<link rel="stylesheet" href="css/main.css">
 	<script src="https://unpkg.com/vue"></script>
@@ -11,21 +12,23 @@
 <body>
 	<main id="app">
 		<section class="form-container">
-			<label for="nickname">Your Nickname (optional)</label>
-			<input v-model="nickName" type="text" id="nickname" class="nickname" placeholder="What is your nickname?">
+			<div class="form-container-inside">
+				<!-- <label for="nickname">Your Nickname (optional):</label> -->
+				<input v-model="nickName" type="text" id="nickname" class="nickname" placeholder="Your nickname">
 
-			<form>
-				<label for="message">Something to say?</label>
-				<textarea v-model="message" class="message" type="text" autocomplete="off" id="textarea"></textarea>
-				<input @click.prevent="dispatchMessage" type="submit">
-			</form>
+				<form>
+					<!-- <label for="message">Your message:</label> -->
+					<textarea v-model="message" class="message" placeholder="Your message" type="text" autocomplete="off" id="textarea"></textarea>
+					<input @click.prevent="dispatchMessage" class="submit-btn" type="submit">
+				</form>
+			</div>
 		</section>
 
 		<section class="messages">
-			<ul id="messages" v-for="message in messages">
-				<!-- render a new message component for every message -->
-				<newmessage :msg="message"></newmessage>
-			</ul>
+				<ul id="messages" >
+					<!-- render a new message component for every message -->
+					<newmessage v-for="message in messages" :msg="message"></newmessage>
+				</ul>
 		</section>
 	</main>
 	<script src="/socket.io/socket.io.js"></script>
