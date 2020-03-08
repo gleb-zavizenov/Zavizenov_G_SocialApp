@@ -13,6 +13,11 @@ function runDisconnectMessage(packet){
 
 function appendNewMessage(msg){
     vm.messages.push(msg);
+    vm.$nextTick(function(){
+        let messagesContainer = document.querySelector('#messages');
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    })
+    
 }
 
 //this is our main Vue instance
@@ -21,7 +26,8 @@ const vm = new Vue({
         socketID : "",
         messages: [],
         message: "",
-        nickName: ""
+        username: "",
+        state: 0
     },
 
     methods: {
@@ -29,15 +35,19 @@ const vm = new Vue({
             // emit the message event and send a message to the sever
             socket.emit('chat_message', {
                 content: this.message,
-                name: this.nickName || 'anonymous'
+                name: this.username || 'anonymous'
             })
             this.message = "";
-            this.scrollToEnd();
         },
-        scrollToEnd: function() {    	   
-            let container = this.$el.querySelector(".messages");
-            container.scrollTop = container.scrollHeight;
-        }
+        setUsername(){
+            socket.emit('join', this.username);
+            this.nickName = '';
+            this.state = 1;
+        },
+        continueAnonimous(){
+            socket.emit('join', null);
+            this.state = 1;
+        }   
     },
 
     components: {
@@ -45,8 +55,9 @@ const vm = new Vue({
     },
 
     mounted: function(){
-        console.log('mounted');
+        
     }
+
 }).$mount("#app");
 
 // some event handling -> these events are coming from the server
