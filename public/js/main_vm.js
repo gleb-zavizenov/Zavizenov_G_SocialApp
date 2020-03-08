@@ -32,6 +32,11 @@ const vm = new Vue({
                 name: this.nickName || 'anonymous'
             })
             this.message = "";
+            this.scrollToEnd();
+        },
+        scrollToEnd: function() {    	   
+            let container = this.$el.querySelector(".messages");
+            container.scrollTop = container.scrollHeight;
         }
     },
 
@@ -48,3 +53,6 @@ const vm = new Vue({
 socket.addEventListener('connected', sentUserId);
 socket.addEventListener('user_disconnect', runDisconnectMessage);
 socket.addEventListener('new_message', appendNewMessage);
+
+// 
+// Adding JS animations
