@@ -11,10 +11,23 @@
 
 <body>
 	<main id="app">
+		<div class="username-choice" v-if="state == 0">
+			<div class="username-form">
+				<div class="username-form-inside">
+					<h3>Welcome! Choose a username</h3>
+					<form @submit.prevent="setUsername">
+						<input type="text" placeholder="username" v-model="username">
+						<input type="submit" value="join chat" class="username-form-btn">
+					</form>
+					<button @click="continueAnonimous">Join as a Guest</button>
+				</div>
+			</div>
+		</div>
+		<div class="messenger-state" v-if="state == 1">
 		<section class="form-container">
 			<div class="form-container-inside">
 				<!-- <label for="nickname">Your Nickname (optional):</label> -->
-				<input v-model="nickName" type="text" id="nickname" class="nickname" placeholder="Your nickname">
+				<!-- <input v-model="username" type="text" id="nickname" class="nickname" placeholder="Your nickname"> -->
 
 				<form>
 					<!-- <label for="message">Your message:</label> -->
@@ -30,6 +43,7 @@
 					<newmessage v-for="message in messages" :msg="message"></newmessage>
 				</ul>
 		</section>
+		</div>
 	</main>
 	<script src="/socket.io/socket.io.js"></script>
 	<script type="module" src="js/main_vm.js"></script>

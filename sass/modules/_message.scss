@@ -13,12 +13,24 @@
 
     float:left;
     clear: both;
+    animation: 0.7s ease-in-out leftslidein;
 }
 
 .my-message {
     float: right !important;
     background-color: #86bf9d;
     color: white;
+    animation: 0.7s ease-in-out rightslidein;
+}
+
+@keyframes leftslidein {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(0%); }
+}
+
+@keyframes rightslidein {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(0%); }
 }
 
 @media screen and (min-width:720px){
